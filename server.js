@@ -8,6 +8,7 @@ import { notFound, errorHandler } from './midd/errorMiddleware.js'
 import dotenv from 'dotenv'
 import uploadRoutes from './routes/uploadRoutes.js'
 import cookieParser from 'cookie-parser'
+import cors from 'cors' 
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config()
@@ -17,6 +18,11 @@ connectDb()
 const port = process.env.PORT || 5000
 
 const app = express()
+
+app.use(cors({
+    origin: '*', 
+    credentials: true
+}))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -34,11 +40,9 @@ app.get('/api/config/paypal', (req, res) =>
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
 )
 
-
 app.get('/', (req, res) => {
     res.send('API is running on Vercel...')
 })
-
 
 app.use(notFound)
 app.use(errorHandler)
