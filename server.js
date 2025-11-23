@@ -34,20 +34,11 @@ app.get('/api/config/paypal', (req, res) =>
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
 )
 
-// ---------- PRODUCTION -----------
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'front-end', 'dist')))
 
-  // THIS IS IMPORTANT
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'front-end', 'dist', 'index.html'))
-  })
+app.get('/', (req, res) => {
+    res.send('API is running on Vercel...')
+})
 
-} else {
-  app.get('/', (req, res) => {
-    res.send('api is running....')
-  })
-}
 
 app.use(notFound)
 app.use(errorHandler)
