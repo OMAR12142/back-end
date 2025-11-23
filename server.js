@@ -19,10 +19,24 @@ const port = process.env.PORT || 5000
 
 const app = express()
 
+const allowedOrigins = [
+  'http://localhost:5173',         
+  'http://localhost:3000',        
+  'https://mavin-store.vercel.app'  
+];
+
 app.use(cors({
-    origin: '*', 
-    credentials: true
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true 
 }))
+
+
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
