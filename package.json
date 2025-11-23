@@ -1,0 +1,42 @@
+{
+  "name": "full-stack-node-js-e-commece",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/OMAR12142/fullstack-ecommerce-node-js-react-js#readme",
+  "bugs": {
+    "url": "https://github.com/OMAR12142/fullstack-ecommerce-node-js-react-js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OMAR12142/fullstack-ecommerce-node-js-react-js.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node back-end/server.js",
+    "server": "nodemon back-end/server.js",
+    "client": "npm run dev --prefix front-end",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node back-end/seeder",
+    "data:destroy": "node back-end/seeder -d",
+    "build": "npm install && npm install --prefix front-end && npm run build --prefix front-end"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.4",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "eslint-plugin-react": "^7.37.5",
+    "nodemon": "^3.1.11",
+    "vite-plugin-eslint": "^1.8.1"
+  }
+}
